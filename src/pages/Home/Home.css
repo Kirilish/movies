@@ -1,10 +1,5 @@
 .wrapper {
-  padding: 30px 30px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 40px;
-}
-
-.active {
-  background-color: greenyellow;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }

@@ -11,7 +11,7 @@ export const actionVideo = {
       dispatch({ type: actionType.SET_MOVIES_VIDEO })
       await axios
         .get(
-          `http://api.themoviedb.org/3/movie/${id}?api_key=9885801ebff4fd52f79c28d7e495e46d&append_to_response=videos`,
+          `http://api.themoviedb.org/3/movie/${id}?api_key=fda7c15a6c66e214c0ef6a082e75bbdb&append_to_response=videos`,
         )
         .then((res) => {
           dispatch({
