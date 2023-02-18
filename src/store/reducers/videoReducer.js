@@ -6,14 +6,14 @@ const initialState = {
   error: false,
 };
 
-export const videoReducer = (state = initialState, action) => {
+export const vidiosReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case actionType.SET_MOVIES_VIDEO:
       return {
         ...state,
         video: {},
-        loading: true,
+        loading: false,
         error: false,
       };
     case actionType.SET_MOVIES_SUCCESS_VIDEO:

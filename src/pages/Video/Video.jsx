@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import YouTube from "react-youtube";
 import { useParams } from "react-router-dom";
 import { actionVideo } from "../../store/actions/moviesVideo";
+import Spinner from "../../components/Spinner/Spinner";
 
 function Video() {
   const params = useParams();
@@ -22,10 +23,17 @@ function Video() {
       autoplay: 1,
     },
   };
+  if (loading) {
+    return (
+      <>
+        <Spinner />
+      </>
+    );
+  }
 
   return (
     <div>
-      <YouTube videoId={video.key} opts={opts}  />;
+      <YouTube videoId={video.key} opts={opts} />;
     </div>
   );
 }

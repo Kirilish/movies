@@ -4,6 +4,7 @@ const initialState = {
   movies: [],
   loading: false,
   error: false,
+  info: {},
 };
 
 export const moviesReduser = (state = initialState, action) => {
@@ -48,6 +49,27 @@ export const moviesReduser = (state = initialState, action) => {
         ...state,
         error: true,
       };
+/*                                                        */
+    case actionType.SET_MOVIES_INFO:
+      return {
+        ...state,
+        info: {},
+        loading: true,
+        error: false,
+      };
+    case actionType.SET_MOVIES_SUCCESS_INFO:
+      return {
+        ...state,
+        info: payload,
+        loading: false,
+        error: false,
+      };
+    case actionType.SET_MOVIES_ERROR_INFO:
+      return {
+        ...state,
+        error: true,
+      };
+
     default:
       return state;
   }

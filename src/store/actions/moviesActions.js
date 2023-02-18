@@ -8,6 +8,10 @@ export const actionType = {
   SET_MOVIES_SEARCH: "SET_MOVIES_SEARCH",
   SET_MOVIES_SUCCESS_SEARCH: "SET_MOVIES_SUCCESS_SEARCH",
   SET_MOVIES_ERROR_SEARCH: " SET_MOVIES_ERROR_SEARCH",
+
+  SET_MOVIES_INFO: "SET_MOVIES_INFO",
+  SET_MOVIES_SUCCESS_INFO: "SET_MOVIES_SUCCESS_INFO",
+  SET_MOVIES_ERROR_INFO: "SET_MOVIES_ERROR_INFO",
 };
 export const actionMovies = {
   getMovies: (page) => {
@@ -28,6 +32,7 @@ export const actionMovies = {
         });
     };
   },
+
   /*                                                       */
   getMoviesSearch: (search) => {
     return async (dispatch) => {
@@ -44,6 +49,25 @@ export const actionMovies = {
         })
         .catch((err) => {
           dispatch({ type: actionType.SET_MOVIES_ERROR_SEARCH, payload: err });
+        });
+    };
+  },
+
+  getMoviesInfo: (info) => {
+    return async (dispatch) => {
+      dispatch({ type: actionType.SET_MOVIES_INFO });
+      await axios
+        .get(
+          `https://api.themoviedb.org/3/movie/${info}?api_key=9885801ebff4fd52f79c28d7e495e46d&language=en-US`
+        )
+        .then((res) => {
+          dispatch({
+            type: actionType.SET_MOVIES_SUCCESS_INFO,
+            payload: res.data,
+          });
+        })
+        .catch((err) => {
+          dispatch({ type: actionType.SET_MOVIES_ERROR_INFO, payload: err });
         });
     };
   },

@@ -16,7 +16,7 @@ function Card({
   return (
     <div>
       <div className="card">
-        <p className="card-title">{title}</p>
+        <p className="card-title">title:{title}</p>
         <p>rating:{vote_average}</p>
         <p>date: {release_date}</p>
         <Link to={`/video/:${id}`}>
@@ -33,6 +33,11 @@ function Card({
           >
             {text}
           </button>
+          <div>
+            <Link to={`/info/:${id}`}>
+              <button>Info</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

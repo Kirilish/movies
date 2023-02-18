@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actionMovies, actionType } from "../../store/actions/moviesAction";
+import { actionMovies, actionType } from "../../store/actions/moviesActions";
 import Card from "../../components/Card/Card";
 import "./Home.css";
 import { actionFavorite } from "../../store/actions/favoriteAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CardSkeleton from "../../components/CardSkeleton/CardSkeleton";
+import CardSkeleton from "../../components/Skeleton/Skleton";
 import { genres } from "../../Constants/Genres/Genres";
 
 function Home() {
   const [page, setPage] = useState(1);
-  const [isVisibleGenre, setIsVisibleGenre] = useState(false);
-  const [genresId, setGenresId] = useState("");
-  const [sort, setSort] = useState("popularity.desc");
   const dispatch = useDispatch();
   const { movies, loading } = useSelector((state) => state.movies);
 
+  
+  const [isVisibleGenre, setIsVisibleGenre] = useState(false);
+  const [genresId, setGenresId] = useState("");
+  const [sort, setSort] = useState("popularity.desc");
+
   useEffect(() => {
-    dispatch(actionMovies.getMovies(page, genresId, sort));
-  }, [page, genresId, sort]);
+    dispatch(actionMovies.getMovies(page));
+  }, [page]);
 
   const handlePage = (e) => {
     setPage(e.target.textContent);
@@ -28,7 +30,7 @@ function Home() {
   const handleAdd = (id) => (e) => {
     e.target.classList.remove("active");
     dispatch(actionFavorite.addMovies(movies.find((i) => i.id === id)));
-    toast.success("🦄 Movie added!", {
+    toast.success('🦄 Movie added!', {
       position: "top-right",
       autoClose: 4000,
       hideProgressBar: false,
@@ -37,7 +39,7 @@ function Home() {
       draggable: true,
       progress: undefined,
       theme: "colored",
-    });
+      });
   };
 
   const handleVisibleGenres = () => {
